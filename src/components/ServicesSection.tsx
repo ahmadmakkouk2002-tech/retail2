@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { HardHat, Wrench, AlertTriangle } from "lucide-react";
+import {
+  HardHat,
+  Wrench,
+  AlertTriangle,
+  Thermometer,
+  Droplets,
+  PaintRoller,
+  Signpost,
+  Square,
+} from "lucide-react";
 import { Link } from "react-router-dom";
 import buildingMap from "@/assets/building-map.png";
 
@@ -17,33 +26,73 @@ interface Hotspot {
 
 const hotspots: Hotspot[] = [
   {
-    id: "construction",
+    id: "general-construction",
     icon: HardHat,
-    label: "Construction Services",
-    description: "Custom builds, renovations, and commercial projects.",
+    label: "General Construction",
+    description: "Comprehensive construction services.",
     href: "/services#construction",
     x: "50%",
     y: "82%",
     color: "accent",
   },
   {
-    id: "facility-maintenance",
-    icon: Wrench,
-    label: "Facility Maintenance",
-    description: "Proactive maintenance to keep buildings running smoothly.",
-    href: "/services#facility-maintenance",
-    x: "78%",
-    y: "18%",
+    id: "signage",
+    icon: Signpost,
+    label: "Signage",
+    description: "Custom signage design and installation.",
+    href: "/services",
+    x: "89%",
+    y: "39%",
     color: "blue",
   },
   {
-    id: "emergency",
-    icon: AlertTriangle,
-    label: "Emergency Services",
-    description: "24/7 emergency response — fast, urgent, reliable.",
-    href: "/services#emergency",
-    x: "22%",
+    id: "plumbing",
+    icon: Droplets,
+    label: "Plumbing",
+    description: "Reliable plumbing services.",
+    href: "/services",
+    x: "28%",
+    y: "80%",
+    color: "accent",
+  },
+  {
+    id: "hvac",
+    icon: Thermometer,
+    label: "HVAC",
+    description: "Heating, ventilation, and air conditioning.",
+    href: "/services",
+    x: "28%",
+    y: "30%",
+    color: "blue",
+  },
+  {
+    id: "glass-repair",
+    icon: Square,
+    label: "Glass Repair",
+    description: "Window and glass repair services.",
+    href: "/services",
+    x: "70%",
+    y: "75%",
+    color: "accent",
+  },
+  {
+    id: "painting-drywall",
+    icon: PaintRoller,
+    label: "Painting & Drywall",
+    description: "Interior and exterior painting and drywall.",
+    href: "/services",
+    x: "75%",
     y: "40%",
+    color: "blue",
+  },
+  {
+    id: "parking-lot-repairs",
+    icon: Wrench,
+    label: "Parking Lot Repairs",
+    description: "Asphalt and concrete repairs.",
+    href: "/services",
+    x: "15%",
+    y: "95%",
     color: "accent",
   },
 ];
@@ -61,8 +110,8 @@ const HotspotMarker = ({
 }) => {
   const colorClasses =
     spot.color === "accent"
-      ? "bg-accent border-accent text-accent-foreground"
-      : "bg-blue-600 border-blue-600 text-white";
+      ? "bg-accent text-accent-foreground"
+      : "bg-gray-700 text-white";
 
   return (
     <div
@@ -75,7 +124,7 @@ const HotspotMarker = ({
         {/* Pulse ring */}
         <span
           className={`absolute inset-0 rounded-full ${
-            spot.color === "accent" ? "bg-accent/30" : "bg-blue-500/30"
+            spot.color === "accent" ? "bg-accent/30" : "bg-gray-500/30"
           } animate-ping`}
           style={{ width: 32, height: 32 }}
         />
@@ -98,7 +147,7 @@ const HotspotMarker = ({
             >
               <p className="font-display font-semibold text-sm mb-1">{spot.label}</p>
               <p className="font-body text-xs text-gold-light/60">{spot.description}</p>
-              <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] border-l-transparent border-r-transparent border-t-primary" />
+              <div className="absolute left-1/2 -translate-x-1/2 top-full w-0 h-0 border-l-[6px] border-r-[6px] border-t-[6px] a-transparent border-r-transparent border-t-primary" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -155,7 +204,7 @@ const ServicesSection = () => {
                 onMouseEnter={() => setActiveSpot("facility-maintenance")}
                 onMouseLeave={() => setActiveSpot(null)}
               >
-                <span className="w-5 h-5 rounded-full bg-blue-600 border-2 border-white shadow flex items-center justify-center">
+                <span className="w-5 h-5 rounded-full bg-gray-700 border-2 border-white shadow flex items-center justify-center">
                   <Wrench className="w-3 h-3 text-white" />
                 </span>
                 <span className="font-body font-semibold text-sm text-foreground group-hover:text-accent transition-colors uppercase tracking-wider">

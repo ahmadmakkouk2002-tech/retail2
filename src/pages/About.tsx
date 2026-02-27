@@ -1,3 +1,41 @@
+const hotspots = [
+  {
+    label: "HVAC",
+    description: "Keep your climate control systems running at peak performance.",
+    icon: Wind,
+    href: "/services",
+    color: "accent",
+    x: "38%",
+    y: "40%",
+  },
+  {
+    label: "Plumbing",
+    description: "Fast, effective solutions for all your plumbing needs.",
+    icon: Droplets,
+    href: "/services",
+    color: "blue",
+    x: "59%",
+    y: "45%",
+  },
+  {
+    label: "Electrical",
+    description: "Safe and reliable electrical services for your facility.",
+    icon: Zap,
+    href: "/services",
+    color: "blue",
+    x: "40%",
+    y: "68%",
+  },
+  {
+    label: "General Contracting",
+    description: "Comprehensive solutions for all your building needs.",
+    icon: HardHat,
+    href: "/services",
+    color: "accent",
+    x: "68%",
+    y: "60%",
+  },
+];
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";

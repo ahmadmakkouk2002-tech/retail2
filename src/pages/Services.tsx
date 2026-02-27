@@ -1,7 +1,25 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { HardHat, Wrench, AlertTriangle, CheckCircle2, Phone } from "lucide-react";
+import Autoplay from "embla-carousel-autoplay";
+import {
+  HardHat,
+  Wrench,
+  AlertTriangle,
+  CheckCircle2,
+  Phone,
+  Droplets,
+  Thermometer,
+  PaintRoller,
+  Signpost,
+  Square,
+  Bolt,
+} from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import Navbar from "@/components/Navbar";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
@@ -13,13 +31,22 @@ import hoodCleaning from "@/assets/work/hood-cleaning.jpg";
 import snaking from "@/assets/work/snaking.jpg";
 import hydroTruck from "@/assets/work/hydro-truck.png";
 import electrical from "@/assets/work/electrical.jpg";
+import image1 from "@/assets/image1.jpg";
+import image2 from "@/assets/image2.jpg";
+import image3 from "@/assets/image3.jpg";
+import image4 from "@/assets/image4.jpg";
+import image5 from "@/assets/image5.jpg";
+import facility1 from "@/assets/facility1.jpg";
+import facility2 from "@/assets/facility2.jpg";
+import facility3 from "@/assets/facility3.jpg";
+import facility4 from "@/assets/facility4.jpg";
 
 interface Feature {
   text: string;
   image: string;
 }
 
-const services = [
+const mainServices = [
   {
     id: "construction",
     icon: HardHat,
@@ -29,12 +56,12 @@ const services = [
     description:
       "From ground-up builds to large-scale renovations, Jibran Construction brings over 25 years of expertise serving the San Diego community. We handle commercial, residential, and mixed-use projects with a focus on quality craftsmanship and clear communication at every phase.",
     features: [
-      { text: "Custom home construction and additions", image: scissorLift },
-      { text: "Tenant improvements and build-outs", image: signsTruck },
-      { text: "Kitchen and bathroom renovations", image: electrical },
-      { text: "Project management and general contracting", image: scissorLift },
-      { text: "Permitting and code compliance coordination", image: signsTruck },
-      { text: "Site preparation and demolition", image: electrical },
+      { text: "Custom home construction and additions", image: image1 },
+      { text: "Tenant improvements and build-outs", image: image2 },
+      { text: "Kitchen and bathroom renovations", image: image3 },
+      { text: "Project management and general contracting", image: image4 },
+      { text: "Permitting and code compliance coordination", image: image5 },
+      { text: "Site preparation and demolition", image: image1 },
     ] as Feature[],
   },
   {
@@ -46,12 +73,10 @@ const services = [
     description:
       "Our facility maintenance programs are designed to keep your buildings running smoothly year-round. We take a proactive approach — identifying issues before they become costly problems, and responding fast when the unexpected happens.",
     features: [
-      { text: "Preventative maintenance programs", image: hvac },
-      { text: "HVAC, plumbing, and electrical repairs", image: electrical },
-      { text: "Interior and exterior upkeep", image: hoodCleaning },
-      { text: "Smart scheduling and walkthroughs", image: hvac },
-      { text: "Multi-location coordination", image: hoodCleaning },
-      { text: "Vendor management and oversight", image: electrical },
+      { text: "Preventative maintenance programs", image: facility1 },
+      { text: "HVAC, plumbing, and electrical repairs", image: facility2 },
+      { text: "Interior and exterior upkeep", image: facility3 },
+      { text: "Smart scheduling and walkthroughs", image: facility4 },
     ] as Feature[],
   },
   {
@@ -70,6 +95,49 @@ const services = [
       { text: "Insurance documentation support", image: hydroTruck },
       { text: "Rapid assessment and mitigation", image: electrical },
     ] as Feature[],
+  },
+];
+
+const otherServices = [
+  {
+    icon: Droplets,
+    title: "Plumbing & Hydro-Jetting",
+    description:
+      "Comprehensive drain cleaning, leak repair, and fixture installation.",
+  },
+  {
+    icon: Thermometer,
+    title: "HVAC Services",
+    description:
+      "Installation, repair, and maintenance for heating and cooling systems.",
+  },
+  {
+    icon: Bolt,
+    title: "Electrical Services",
+    description:
+      "Full-range electrical services including repairs, wiring, and panel upgrades.",
+  },
+  {
+    icon: PaintRoller,
+    title: "Painting & Drywall",
+    description:
+      "Professional interior/exterior painting and drywall installation/repair.",
+  },
+  {
+    icon: Signpost,
+    title: "Signage & Lighting",
+    description: "Custom sign fabrication, installation, and lighting maintenance.",
+  },
+  {
+    icon: Square,
+    title: "Glass & Window Repair",
+    description:
+      "Fast and reliable repair and replacement for windows, doors, and storefronts.",
+  },
+  {
+    icon: Wrench,
+    title: "Parking Lot Repairs",
+    description: "Asphalt patching, crack sealing, and striping for parking facilities.",
   },
 ];
 
@@ -105,21 +173,25 @@ const Services = () => {
               What We Do
             </span>
             <h1 className="text-4xl md:text-6xl font-display text-gold mb-6 leading-tight">
-              Expert Services,<br />End to End.
+              Expert Services,
+              <br />
+              End to End.
             </h1>
             <p className="text-lg md:text-xl font-body text-gold-light/60 max-w-2xl">
-              From construction to maintenance to emergencies — we handle it all with precision, urgency, and care. Proudly serving San Diego for over 25 years.
+              From construction to maintenance to emergencies — we handle it all
+              with precision, urgency, and care. Proudly serving San Diego for
+              over 25 years.
             </p>
           </motion.div>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-gold to-accent" />
       </section>
 
-      {/* Services */}
+      {/* Main Services */}
       <section className="py-16">
         <div className="container mx-auto px-4 lg:px-8">
           <div className="space-y-8">
-            {services.map((svc, i) => (
+            {mainServices.map((svc, i) => (
               <motion.div
                 key={svc.id}
                 id={svc.id}
@@ -176,7 +248,10 @@ const Services = () => {
                           initial={{ opacity: 0, y: 16 }}
                           whileInView={{ opacity: 1, y: 0 }}
                           viewport={{ once: true }}
-                          transition={{ duration: 0.4, delay: idx * 0.08 }}
+                          transition={{
+                            duration: 0.4,
+                            delay: idx * 0.08,
+                          }}
                           className="rounded-xl overflow-hidden border border-gold/10"
                         >
                           <div className="h-28 md:h-32 overflow-hidden">
@@ -200,6 +275,49 @@ const Services = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Other Services Carousel */}
+      <section className="py-24 bg-background">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-4xl md:text-5xl font-display text-foreground mb-4">
+              Our Other Services
+            </h2>
+            <p className="font-body text-muted-foreground leading-relaxed text-lg">
+              We offer a complete range of construction and maintenance
+              services to handle any job, big or small.
+            </p>
+          </div>
+          <Carousel
+            plugins={[Autoplay({ delay: 2000 })]}
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            className="w-full max-w-6xl mx-auto"
+          >
+            <CarouselContent>
+              {otherServices.map((service, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <div className="p-4 h-full">
+                    <div className="bg-primary border border-gold/10 rounded-xl p-8 flex flex-col items-center text-center hover:border-gold/25 transition-all h-full">
+                      <div className="w-16 h-16 bg-accent rounded-full flex items-center justify-center mb-6 flex-shrink-0">
+                        <service.icon className="w-8 h-8 text-accent-foreground" />
+                      </div>
+                      <h3 className="font-display text-2xl text-gold mb-3">
+                        {service.title}
+                      </h3>
+                      <p className="font-body text-gold-light/60 leading-relaxed">
+                        {service.description}
+                      </p>
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
       </section>
 
